@@ -1,1 +1,26 @@
+def count_chars_in_file(filename):
+    """Підраховує кількість символів у кожному рядку файлу."""
+    try:
+        with open(filename, 'r', encoding='utf-8') as file:
+            lines = file.readlines()
+            for i, line in enumerate(lines, 1):
+                char_count = len(line.strip())  
+                print(f"Рядок {i}: {char_count} символів")
+    except FileNotFoundError:
+        print(f"Файл {filename} не знайдено!")
+    except Exception as e:
+        print(f"Помилка при обробці файлу: {e}")
 
+def main():
+    filename = "text.txt"
+    
+    with open(filename, 'w', encoding='utf-8') as file:
+        file.write("Перший рядок\n")
+        file.write("Другий довгий рядок тексту\n")
+        file.write("Третій\n")
+    
+    print(f"Аналіз файлу {filename}:")
+    count_chars_in_file(filename)
+
+if __name__ == "__main__":
+    main()
